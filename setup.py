@@ -6,7 +6,7 @@ with open('README.md', 'r', encoding='utf-8') as fh:
 
 setuptools.setup(
     name='zipfile-ppmd',
-    version="0.0.3.1",
+    version="0.0.3.2",
     author='cielavenir',
     author_email='cielartisan@gmail.com',
     description='Monkey patch the standard zipfile module to enable PPMd support',
@@ -20,7 +20,7 @@ setuptools.setup(
     classifiers=[
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
         'Operating System :: OS Independent',
         'Topic :: System :: Archiving',
         'Topic :: System :: Archiving :: Compression',
