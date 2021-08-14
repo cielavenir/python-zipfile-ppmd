@@ -5,18 +5,18 @@ with open('README.md', 'r', encoding='utf-8') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='zipfile-zstd',
-    version="0.0.3",
-    author='Andrei Alexeyev',
-    author_email='akari@taisei-project.org',
-    description='Monkey patch the standard zipfile module to enable Zstandard support',
+    name='zipfile-ppmd',
+    version="0.0.3.1",
+    author='cielavenir',
+    author_email='cielartisan@gmail.com',
+    description='Monkey patch the standard zipfile module to enable PPMd support',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/taisei-project/python-zipfile-zstd',
+    url='https://github.com/cielavenir/python-zipfile-ppmd',
     project_urls={
-        'Bug Tracker': 'https://github.com/taisei-project/python-zipfile-zstd/issues',
+        'Bug Tracker': 'https://github.com/cielavenir/python-zipfile-ppmd/issues',
     },
-    keywords='zip zipfile zstd zstandard',
+    keywords='zip zipfile ppmd',
     classifiers=[
         'Intended Audience :: Developers',
         'Programming Language :: Python :: 3',
@@ -28,7 +28,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     python_requires=">=3.6",
     install_requires=[
-        'zstandard>=0.15.0',
+        'pyppmd',
     ],
 )
 
