@@ -1,6 +1,7 @@
 
 import zipfile
 from isal import isal_zlib
+import zlib
 import threading
 import inspect
 import struct
