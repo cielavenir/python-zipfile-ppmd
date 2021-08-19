@@ -40,7 +40,7 @@ class PPMDCompressor(object):
     def compress(self, data):
         if self._comp is None:
             return self._init() + self._comp.encode(data)
-        return self._comp.compress(data)
+        return self._comp.encode(data)
 
     def flush(self):
         if self._comp is None:
@@ -114,5 +114,3 @@ def zstd_FileHeader(self, zip64=None):
         self.create_version = max(self.create_version, zipfile.PPMD_VERSION)
         self.extract_version = max(self.extract_version, zipfile.PPMD_VERSION)
     return patch.originals['FileHeader'](self, zip64=zip64)
-
-
