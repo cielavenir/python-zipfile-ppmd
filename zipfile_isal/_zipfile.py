@@ -1,6 +1,5 @@
 
 import zipfile
-from isal import isal_zlib
 import zlib
 import threading
 import inspect
@@ -8,7 +7,16 @@ import struct
 
 from ._patcher import patch
 
-zipfile.crc32 = isal_zlib.crc32
+try:
+    from isal import isal_zlib
+    zipfile.crc32 = isal_zlib.crc32
+except ImportError:
+    isal_zlib = None
+
+try:
+    import slz
+except ImportError:
+    slz = None
 
 #@patch(zipfile, '_check_compression')
 #def zstd_check_compression(compression):
@@ -21,7 +29,9 @@ zipfile.crc32 = isal_zlib.crc32
 @patch(zipfile, '_get_decompressor')
 def zstd_get_decompressor(compress_type):
     if compress_type == zipfile.ZIP_DEFLATED:
-        return isal_zlib.decompressobj(-15)
+        if isal_zlib is not None:
+            return isal_zlib.decompressobj(-15)
+        return zlib.decompressobj(-15)
     else:
         return patch.originals['_get_decompressor'](compress_type)
 
@@ -32,8 +42,12 @@ if 'compresslevel' in inspect.signature(zipfile._get_compressor).parameters:
         if compress_type == zipfile.ZIP_DEFLATED:
             if compresslevel is None:
                 compresslevel = 6
-            if compresslevel<0:
-                return isal_zlib.compressobj(-compresslevel, isal_zlib.DEFLATED, -15, 9)
+            if compresslevel < -20:
+                assert slz is not None
+                return slz.compressobj()
+            if compresslevel <= -10:
+                assert isal_zlib is not None
+                return isal_zlib.compressobj(-(compresslevel+10), isal_zlib.DEFLATED, -15, 9)
             return zlib.compressobj(compresslevel, zlib.DEFLATED, -15)
         else:
             return patch.originals['_get_compressor'](compress_type, compresslevel=compresslevel)
@@ -43,8 +57,12 @@ else:
         if compress_type == zipfile.ZIP_DEFLATED:
             if compresslevel is None:
                 compresslevel = 6
-            if compresslevel<0:
-                return isal_zlib.compressobj(-compresslevel, isal_zlib.DEFLATED, -15, 9)
+            if compresslevel < -20:
+                assert slz is not None
+                return slz.compressobj()
+            if compresslevel <= -10:
+                assert isal_zlib is not None
+                return isal_zlib.compressobj(-(compresslevel+10), isal_zlib.DEFLATED, -15, 9)
             return zlib.compressobj(compresslevel, zlib.DEFLATED, -15)
         else:
             return patch.originals['_get_compressor'](compress_type)
