@@ -47,7 +47,9 @@ methods = [
 ]
 if 'compresslevel' in signature(zipfile._get_compressor).parameters:
     methods.extend([
-	    (zipfile.ZIP_DEFLATED, -2),
+        (zipfile.ZIP_DEFLATED, -10),
+        (zipfile.ZIP_DEFLATED, -12),
+        (zipfile.ZIP_DEFLATED, -21),
     ])
 
 @pytest.mark.parametrize('fname,method,level',[
