@@ -5,7 +5,7 @@ Monkey patch the standard `zipfile` module to enable accelerated deflate support
 
 Based on [`zipfile-deflate64`](https://github.com/brianhelba/zipfile-deflate64) and [`zipfile-zstandard`](https://github.com/taisei-project/python-zipfile-zstd), which provides similar functionality but for the `deflate64` algorithm. Unlike `zipfile-deflate64`, this package supports both compression and decompression.
 
-Requires [`isal`](https://github.com/pycompression/python-isal) (and [`slz`](https://github.com/cielavenir/slz) optionally).
+Requires [`isal`](https://github.com/pycompression/python-isal) (and [`slz`](https://github.com/cielavenir/python-slz) optionally).
 
 Note: if you need Python2, use [zipfile39](https://github.com/cielavenir/zipfile39) instead (it is also compatible with Python3).
 
