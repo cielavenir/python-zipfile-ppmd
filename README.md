@@ -1,4 +1,4 @@
-For zipfile-xz information, see xz branch. For zipfile-isal information, see isal branch.
+For zipfile-xz information, see xz branch. For zipfile-isal information, see isal branch. For zipfile-dclimplode information, see dclimplode branch.
 
 # zipfile-ppmd
 [![PyPI](https://img.shields.io/pypi/v/zipfile-ppmd)](https://pypi.org/project/zipfile-ppmd/)
