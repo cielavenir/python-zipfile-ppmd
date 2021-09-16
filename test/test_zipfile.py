@@ -18,7 +18,7 @@ sys.path.append(os.path.join(mydir,'..'))
 os.chdir(mydir)
 
 import zipfile
-import zipfile_ppmd
+import zipfile_dclimplode
 
 info7z  = subprocess.check_output(['7z', 'i'])
 avail7z = {
@@ -28,7 +28,8 @@ avail7z = {
     zipfile.ZIP_LZMA:      b'    30101 LZMA'    in info7z,
     # zipfile.ZIP_ZSTANDARD: b'  4F71101 ZSTD'    in info7z,
     # zipfile.ZIP_XZ:        b'       21 LZMA2'   in info7z,
-    zipfile.ZIP_PPMD:      b'    30401 PPMD'    in info7z,
+    # zipfile.ZIP_PPMD:      b'    30401 PPMD'    in info7z,
+    zipfile.ZIP_DCLIMPLODED: False,
 }
 
 fnames = [
@@ -43,7 +44,9 @@ methods = [
     (zipfile.ZIP_LZMA, 6),
     # (zipfile.ZIP_ZSTANDARD, 3),
     # (zipfile.ZIP_XZ, 6),
-    (zipfile.ZIP_PPMD, 5),
+    # (zipfile.ZIP_PPMD, 5),
+    (zipfile.ZIP_DCLIMPLODED, 3),
+    (zipfile.ZIP_DCLIMPLODED, 13),
 ]
 
 @pytest.mark.parametrize('fname,method,level',[

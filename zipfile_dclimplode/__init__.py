@@ -4,7 +4,8 @@ from . import _zipfile
 
 from zipfile import *
 from zipfile import (
-    ZIP_PPMD,
-    PPMD_VERSION,
+    ZIP_DCLIMPLODED,
+    ZIP_PKIMPLODED,
+    DCLIMPLODED_VERSION,
 )
 
