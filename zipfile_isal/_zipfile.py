@@ -18,6 +18,11 @@ try:
 except ImportError:
     slz = None
 
+try:
+    import codecs7z
+except ImportError:
+    codecs7z = None
+
 #@patch(zipfile, '_check_compression')
 #def zstd_check_compression(compression):
 #    if compression == zipfile.ZIP_DEFLATED:
@@ -48,6 +53,9 @@ if 'compresslevel' in inspect.signature(zipfile._get_compressor).parameters:
             if compresslevel <= -10:
                 assert isal_zlib is not None
                 return isal_zlib.compressobj(-(compresslevel+10), isal_zlib.DEFLATED, -15, 9)
+            if compresslevel >= 10:
+                assert codecs7z is not None
+                return codecs7z.deflate_compressobj(compresslevel-10)
             return zlib.compressobj(compresslevel, zlib.DEFLATED, -15)
         else:
             return patch.originals['_get_compressor'](compress_type, compresslevel=compresslevel)

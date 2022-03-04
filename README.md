@@ -39,3 +39,4 @@ compresslevel:
 
 - -10, -11, -12, -13 correspond to isal 0, 1, 2, 3
 - -21 corresponds to slz
+- 11 to 19 correspond to 7-zip 1-9
