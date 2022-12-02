@@ -64,7 +64,7 @@ class PPMDDecompressor(object):
             sasize = ((prop&0x0ff0)>>4)+1
             restore_method = (prop&0xf000)>>12
 
-            self._decomp = pyppmd.Ppmd8Decoder(order, sasize<<20, restore_method=restore_method, endmark=False)
+            self._decomp = pyppmd.Ppmd8Decoder(order, sasize<<20, restore_method=restore_method)
             data = self._unconsumed[2:]
             del self._unconsumed
 
